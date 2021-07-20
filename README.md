@@ -30,9 +30,26 @@
   
  The 2 users that you have created now show show up in the Studio Control Panel.
    
-## Open the Studio Workspace as a user
+- ## Open the Studio Workspace as a user
 
 1. Sign out of the AWS console and login as smstudiouser1. 
 2. Attempt to open the Studio as smstudiouser2. You should see an access denied exception, based on the fact that the user profile name is being validated to match the IAM user who has signed in.
 3. Atttempt to open the studio as smstudiouser1. The Studio should now launch correctly for first time use. Allow upto a minute for the Studio to fully launch. 
 4. Clone this Git Repostory by navigating to Git -> Clone a repository option in the top menu.
+
+- ## Create a custom kernel
+
+1. Open the notebook bring-custom-container.ipynb
+2. Run the code in the cells until cell 3. At this point your container is built and can be used as a custom image. The remaining cells are optional and can be run for the sake of completeness.
+3. Return to the Studio Control Panel. Select the Attach Image option. Choose New Image and provide the the URL of the ECR image just built. Provide an image name and display name and select the execution role as SMStudioExecutionRole.
+4. Do not change the EFS mount path. Provide a name for the Kernel and hit Submit. The custom image should now be available to use in the Studio.
+
+- ## Share a notebook
+
+1. While still in the context of bring-custom-container.ipynb, click on the Share option.
+2. Sign out of the AWS Console. Login as smstudiouser2
+3. Navigate to the SageMaker console and open the Studio with the smstudiouser2 profile. 
+4. Paste the link for the shared notebook. This will open a read-only copy of the shared notebook. smstudiouser2 can make a copy of the shared notebook and make changes to it.
+5. Clone the shared repository to commit the changes to the main line.
+6. In the search bar, type EFS and click on EFS. You should see a file system. This was created as part of the Studio domain and exists in the VPC selected at the time of domain creation. It has access points in each of the subnets selected during domain creation too. 
+7. You can launch an EC2 instance and mount the file system to view the contents of this file system. Within the file system, each user profile in the Studio will have their own dedicated directory.
