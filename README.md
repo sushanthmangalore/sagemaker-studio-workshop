@@ -37,12 +37,22 @@
 3. Atttempt to open the studio as smstudiouser1. The Studio should now launch correctly for first time use. Allow upto a minute for the Studio to fully launch. 
 4. Clone this Git Repostory by navigating to Git -> Clone a repository option in the top menu.
 
+
+- ## Read and write from an S3 bucket from the Studio
+
+1. Navigate to S3 console and create a new S3 bucket. Name the bucket uniquely.
+2. Upload the CSV file from the Git repo into the S3 bucket.
+3. Open the s3-read-write.ipynb notebook. Edit the bucket name to match your bucket name. 
+4. Execute the code in the cell. Observe that the file from the S3 bucket is read correctly and an output file is being written back to the same bucket.
+
+
 - ## Create a custom kernel
 
 1. Open the notebook bring-custom-container.ipynb
 2. Run the code in the cells until cell 3. At this point your container is built and can be used as a custom image. The remaining cells are optional and can be run for the sake of completeness.
 3. Return to the Studio Control Panel. Select the Attach Image option. Choose New Image and provide the the URL of the ECR image just built. Provide an image name and display name and select the execution role as SMStudioExecutionRole.
 4. Do not change the EFS mount path. Provide a name for the Kernel and hit Submit. The custom image should now be available to use in the Studio.
+
 
 - ## Share a notebook
 
@@ -53,10 +63,3 @@
 5. Clone the shared repository to commit the changes to the main line.
 6. In the search bar, type EFS and click on EFS. You should see a file system. This was created as part of the Studio domain and exists in the VPC selected at the time of domain creation. It has access points in each of the subnets selected during domain creation too. 
 7. You can launch an EC2 instance and mount the file system to view the contents of this file system. Within the file system, each user profile in the Studio will have their own dedicated directory.
-
-- ## Read and write from an S3 bucket from the Studio
-
-1. Navigate to S3 console and create a new S3 bucket. Name the bucket uniquely.
-2. Upload the CSV file from the Git repo into the S3 bucket.
-3. Open the s3-read-write.ipynb notebook. Edit the bucket name to match your bucket name. 
-4. Execute the code in the cell. Observe that the file from the S3 bucket is read correctly and an output file is being written back to the same bucket.
