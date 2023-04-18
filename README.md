@@ -1,5 +1,5 @@
 # sagemaker-studio-workshop
-100 Level Workshop for SageMaker Studio
+Custom Workshop for SageMaker Studio
 
 - ## Create Studio Domain as Studio Admin
 
